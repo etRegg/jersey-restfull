@@ -1,6 +1,7 @@
 package com.mregg.main;
 import javax.sql.DataSource;
 
+import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -12,16 +13,16 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.jersey.JerseyAutoConfiguration;
 
+import com.mregg.main.jersey.Config;
 import com.mregg.main.model.Customer;
 import com.mregg.main.repository.CustomerRepository;
 
 @SpringBootApplication
 @Configuration
 @ComponentScan
-
 @EnableAutoConfiguration
-
 public class MreggApplication {
 	private static final Logger log = LoggerFactory.getLogger(MreggApplication.class);
 
@@ -29,6 +30,11 @@ public class MreggApplication {
 		SpringApplication.run(MreggApplication.class, args);
 	}
 	
+	/*public ResourceConfig endpointConfig() {
+	    ResourceConfig config = new ResourceConfig();
+	    config.packages(true, Config.class.getPackage().getName()); // 'xxx', recursive
+	    return config;
+	}*/
 	@Bean
 	public CommandLineRunner demo(CustomerRepository repository) {
 		return (args) -> {
@@ -47,19 +53,14 @@ public class MreggApplication {
 			}
 			log.info("");
 
-			// fetch an individual customer by ID
-			Customer customer = repository.findOne(1L);
-			log.info("Customer found with findOne(1L):");
-			log.info("--------------------------------");
-			log.info(customer.toString());
-			log.info("");
+			
 
 			// fetch customers by last name
 			log.info("Customer found with findByLastName('Bauer'):");
 			log.info("--------------------------------------------");
-			for (Customer bauer : repository.findByLastName("Bauer")) {
+			/*for (Customer bauer : repository.findByFirstName("Bauer")) {
 				log.info(bauer.toString());
-			}
+			}*/
 			log.info("");
 		};
 	}
