@@ -9,15 +9,15 @@
 	<packaging>jar</packaging>
 
 	<name>mregg</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Regg- project</description>
 
+	<!-- parent> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-parent</artifactId> 
+		<version>1.5.10.RELEASE</version> <relativePath /> </parent -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.10.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -27,25 +27,63 @@
 	</properties>
 
 	<dependencies>
-        <dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-rs-service-description</artifactId>
-			<version>${cxf.version}</version>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-rs-service-description-swagger</artifactId>
-			<version>${cxf.version}</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jersey</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>swagger-ui</artifactId>
-			<version>${swagger-ui.version}</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.fasterxml.jackson.jaxrs</groupId>
-			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+
+		<!-- -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+
+
+		<!-- dependency> <groupId>org.apache.cxf</groupId> <artifactId>cxf-rt-rs-service-description</artifactId> 
+			<version>${cxf.version}</version> </dependency> <dependency> <groupId>org.apache.cxf</groupId> 
+			<artifactId>cxf-rt-rs-service-description-swagger</artifactId> <version>${cxf.version}</version> 
+			</dependency> <dependency> <groupId>org.webjars</groupId> <artifactId>swagger-ui</artifactId> 
+			<version>${swagger-ui.version}</version> </dependency> <dependency> <groupId>com.fasterxml.jackson.jaxrs</groupId> 
+			<artifactId>jackson-jaxrs-json-provider</artifactId> </dependency -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -82,7 +120,7 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.6.4</version>
+
 			<scope>compile</scope>
 		</dependency>
 
@@ -91,7 +129,7 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
-			<version>1.6.4</version>
+
 			<scope>runtime</scope>
 		</dependency>
 
@@ -100,7 +138,7 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.4</version>
+
 			<scope>runtime</scope>
 		</dependency>
 
@@ -117,25 +155,10 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
+
 		</dependency>
+		
 
-
-
-
-
-
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
@@ -146,6 +169,7 @@
 
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
+        <directory>src/main/java,src/test/java,src/test/resources</directory>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -153,15 +177,20 @@
 			</plugin>
 		</plugins>
 	</build>
+	<repositories>
+		<repository>
+			<id>spring-releases</id>
+			<url>https://repo.spring.io/libs-release</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-releases</id>
+			<url>https://repo.spring.io/libs-release</url>
+		</pluginRepository>
+	</pluginRepositories>
 
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
-				<version>3.1.11</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+	<!-- dependencyManagement> <dependencies> <dependency> <groupId>org.apache.cxf</groupId> 
+		<artifactId>cxf-spring-boot-starter-jaxrs</artifactId> <version>3.1.11</version> 
+		</dependency> </dependencies> </dependencyManagement -->
 </project>
