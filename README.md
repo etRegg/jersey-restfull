@@ -1,5 +1,21 @@
 # jersey-restfull
 
-# mvn clean eclipse:eclipse
+## with spring boot, JPA and Hibernate
+## for install and run
 
-# mvn  spring-boot:run
+### mvn clean eclipse:eclipse
+
+### mvn install
+
+### mvn  spring-boot:run
+
+## for test run
+
+### mvn test
+
+
+# prerequisite 
+
+### Install SDK 1.8
+
+### install Maven 
