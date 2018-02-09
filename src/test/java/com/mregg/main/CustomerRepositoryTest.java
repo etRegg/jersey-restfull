@@ -44,7 +44,7 @@ public class CustomerRepositoryTest {
         //before
     	List<Customer> l1=this.entityManager.createQuery( "from Customer", Customer.class ).getResultList();
     	log.info(l1.toString());
-    	Assert.assertEquals(l1.size(), 0);
+    	
     	// given
         Customer  alex = new Customer("alex","papas");
         customerRepository.save(alex);
@@ -56,7 +56,7 @@ public class CustomerRepositoryTest {
     
     //after 
         List<Customer> l2=this.entityManager.createQuery( "from Customer", Customer.class ).getResultList();
-        Assert.assertEquals(l2.size(),1);
+        Assert.assertEquals(l2.size(),l1.size()+1);
     }
     
  
